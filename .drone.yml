@@ -18,43 +18,43 @@ script:
 services:
   - postgres
   - mysql
-notify:
-  email:
-    recipients:
-      - brad@drone.io
-  webhook:
-    urls:
-      - https://webhooks.gitter.im/e/$$GITTER_KEY
-    on_started: false
-    on_success: true
-    on_failure: true
+#notify:
+#  email:
+#    recipients:
+#      - brad@drone.io
+#  webhook:
+#    urls:
+#      - https://webhooks.gitter.im/e/$$GITTER_KEY
+#    on_started: false
+#    on_success: true
+#    on_failure: true
 
-publish:
-  s3:
-    acl: public-read
-    region: us-east-1
-    bucket: downloads.drone.io
-    access_key: $$AWS_KEY
-    secret_key: $$AWS_SECRET
-    source: packaging/output/
-    target: $DRONE_BRANCH/
-    recursive: true
-    when:
-      owner: drone
+#publish:
+#  s3:
+#    acl: public-read
+#    region: us-east-1
+#    bucket: downloads.drone.io
+#    access_key: $$AWS_KEY
+#    secret_key: $$AWS_SECRET
+#    source: packaging/output/
+#    target: $DRONE_BRANCH/
+#    recursive: true
+#    when:
+#      owner: drone
 
 
 
 
 # new build script for 0.4 branch
 
-build:
-  image: golang:1.4.2
-  environment:
-    - GOPATH=/drone
-  commands:
-    - apt-get update 1> /dev/null 2> /dev/null
-    - apt-get -y install libsqlite3-dev sqlite3 1> /dev/null 2> /dev/null
-    - go get golang.org/x/tools/cmd/vet
-    - go get golang.org/x/tools/cmd/cover
-    - make deps
-    - make test
+#build:
+#  image: golang:1.4.2
+#  environment:
+#    - GOPATH=/drone
+#  commands:
+#    - apt-get update 1> /dev/null 2> /dev/null
+#    - apt-get -y install libsqlite3-dev sqlite3 1> /dev/null 2> /dev/null
+#    - go get golang.org/x/tools/cmd/vet
+#   - go get golang.org/x/tools/cmd/cover
+#    - make deps
+#    - make test
